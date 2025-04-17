@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  gameOver: 0
   backgound: {fileID: 835818922}
   playerModel: {fileID: 1096389203}
   skinOptions:
@@ -188,6 +189,10 @@ MonoBehaviour:
   - {fileID: 1819619335}
   - {fileID: 2119420665}
   - {fileID: 2132274936}
+  startDelay: 2
+  repeatDelay: 2
+  spawningOn: 1
+  spawnManager: {fileID: 510036429}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +365,8 @@ MonoBehaviour:
   - {fileID: 6759378478164146143, guid: d3123cba66cc15842bf34f80a33dbeff, type: 3}
   - {fileID: 3632371010575329335, guid: 48263298ad9dc25439a8334cac149d44, type: 3}
   - {fileID: 332178954099883045, guid: 7415ea6652eff794d92afbc96f980a45, type: 3}
+  gameManager: {fileID: 113504804}
+  spawnReady: 0
 --- !u!4 &510036430
 Transform:
   m_ObjectHideFlags: 0
