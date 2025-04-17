@@ -5,6 +5,7 @@ using static Unity.VisualScripting.Metadata;
 public class GameManager : MonoBehaviour
 {
     public float speed = 15f; //Speed of the obsticles and backgound
+    public float Platformspeed = 15f; //Speed of the obsticles and backgound
     public bool gameOver = false;
 
     //Refrences to every model, texture and backgound avaiable in the game
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     public float repeatDelay = 2f; //Delay between the game spawning obsticles
     public bool spawningOn = true; //Bool to determin if the game is spawning obsticles
     public SpawnManager spawnManager; //Reference to the SpawnManager script
+    public PlatformSpawnManager platformSpawnManager; // Reference to platform spawner
+    //public TimeScore timeScore;
 
 
 

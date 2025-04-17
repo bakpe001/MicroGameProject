@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  Platformspeed: 15
   gameOver: 0
   backgound: {fileID: 835818922}
   playerModel: {fileID: 1096389203}
@@ -193,6 +194,7 @@ MonoBehaviour:
   repeatDelay: 2
   spawningOn: 1
   spawnManager: {fileID: 510036429}
+  platformSpawnManager: {fileID: 1022489018}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +659,61 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 112.79999, y: 18.836718, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1022489017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1022489019}
+  - component: {fileID: 1022489018}
+  m_Layer: 0
+  m_Name: PlatformManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1022489018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022489017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45aadacb75803de4887b765706099df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformPrefab: {fileID: 4384661807282903806, guid: c0aa9b30733c2f8459f015d8d16d0f55, type: 3}
+  gameManager: {fileID: 113504804}
+  spawnXMin: 30
+  spawnXMax: 40
+  spawnYMin: 2
+  spawnYMax: 7
+  minBurstDelay: 3
+  maxBurstDelay: 6
+  platformsPerBurst: 3
+  spawnDelay: 0.5
+  spawnChance: 0.4
+--- !u!4 &1022489019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022489017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.98, y: 1.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1096389203 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9103424728084858753, guid: daa208fff61e65542b0784a0709d0dfb, type: 3}
@@ -925,3 +982,4 @@ SceneRoots:
   - {fileID: 835818921}
   - {fileID: 2014335015}
   - {fileID: 6980585980513261355}
+  - {fileID: 1022489019}
