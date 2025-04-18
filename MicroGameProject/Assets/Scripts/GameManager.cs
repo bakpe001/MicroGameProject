@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public bool spawningOn = true; //Bool to determin if the game is spawning obsticles
     public SpawnManager spawnManager; //Reference to the SpawnManager script
     public PlatformSpawnManager platformSpawnManager; // Reference to platform spawner
-    //public TimeScore timeScore;
+    //public TimeScore;
 
 
 
@@ -51,16 +51,15 @@ public class GameManager : MonoBehaviour
             // Move to the next child (looping)
             skinOptions[currentSkin].ChangeTexture(); // Change the texture
         }
-        if (Input.GetKeyDown(KeyCode.N)) // Detect when K is pressed
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            spawningOn = false; // Stop spawning obsticles
-            spawnManager.spawnReady = false;
+            spawningOn = false;
         }
-        if (Input.GetKeyDown(KeyCode.B)) // Detect when K is pressed
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            spawningOn = true; // Stop spawning obsticles
-            spawnManager.StartCoroutine(spawnManager.SpawnDelay(startDelay)); // Start spawning obsticles
+            spawningOn = true;
         }
+
     }
 
 }

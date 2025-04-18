@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
+    
     public GameManager gameManager;
     public Text scoreText; // Assign a UI Text in the inspector
 
