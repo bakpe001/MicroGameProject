@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     [Header("Speed of diffrent game objects")]
     public float speed = 15f; //Speed of the obsticles and backgound
     public float Platformspeed = 15f; //Speed of the obsticles and backgound
-    public float powerUpSpeed = 15f; //Speed of the obsticles
     public bool gameOver = false;
 
     [Header("Textures and Models")]

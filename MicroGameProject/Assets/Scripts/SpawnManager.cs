@@ -1,14 +1,14 @@
- using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     [Header("Spawn Indexes")]
     public GameObject[] obstacles; // Assign all obstacle prefabs here
-    public GameObject[] powerUps; // Assign all powerup prefabs here
 
     [Header("Game Manager Reference")]
     public GameManager gameManager; // Set this via inspector or dynamically
+    public PowerUpManager powerUpManager; // Reference to PowerUpManager
 
     [Header("Spawn Position Settings")]
     public Vector2 spawnYRange = new Vector2(1f, 4f); // Vertical randomness
@@ -24,6 +24,8 @@ public class SpawnManager : MonoBehaviour
     public float minBurstDelay = 1f; // Min delay after burst
     public float maxBurstDelay = 3f; // Max delay after burst
 
+
+
     void Start()
     {
         // Begin the burst-spawning loop after initial delay
@@ -36,7 +38,7 @@ public class SpawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             // Spawn a power-up when 'P' is pressed
-            SpawnPowerUp();
+            powerUpManager.SpawnPowerUp();
         }
     }
 
@@ -85,21 +87,5 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = new Vector3(spawnX, y, 0);
 
         Instantiate(obstacles[index], spawnPos, obstacles[index].transform.rotation);
-    }
-
-    void SpawnPowerUp()
-    {
-        int index = Random.Range(0, powerUps.Length);
-        float y = Random.Range(spawnYRange.x, spawnYRange.y);
-        Vector3 spawnPos = new Vector3(spawnX, y, 0);
-
-        Instantiate(powerUps[index], spawnPos, powerUps[index].transform.rotation);
-    }
-    void SpawnPowerUp(int choise)
-    {
-        float y = Random.Range(spawnYRange.x, spawnYRange.y);
-        Vector3 spawnPos = new Vector3(spawnX, y, 0);
-
-        Instantiate(powerUps[choise], spawnPos, powerUps[choise].transform.rotation);
     }
 }

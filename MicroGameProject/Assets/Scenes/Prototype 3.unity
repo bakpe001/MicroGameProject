@@ -176,7 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   Platformspeed: 15
-  powerUpSpeed: 15
   gameOver: 0
   backgound: {fileID: 835818922}
   playerModel: {fileID: 1096389203}
@@ -369,9 +368,6 @@ MonoBehaviour:
   - {fileID: 6759378478164146143, guid: d3123cba66cc15842bf34f80a33dbeff, type: 3}
   - {fileID: 3632371010575329335, guid: 48263298ad9dc25439a8334cac149d44, type: 3}
   - {fileID: 332178954099883045, guid: 7415ea6652eff794d92afbc96f980a45, type: 3}
-  powerUps:
-  - {fileID: 628827891378026763, guid: f338aa0e5d4fe1e46a8e7ebddbcc32fc, type: 3}
-  - {fileID: 628827891378026763, guid: 9e1cadf01e3825043a6ac7cf8fa5db3c, type: 3}
   gameManager: {fileID: 113504804}
   spawnYRange: {x: 1, y: 4}
   spawnX: 25
@@ -381,6 +377,7 @@ MonoBehaviour:
   delayBetweenSpawns: 0.3
   minBurstDelay: 1
   maxBurstDelay: 3
+  powerUpManager: {fileID: 1423279041}
 --- !u!4 &510036430
 Transform:
   m_ObjectHideFlags: 0
@@ -1021,6 +1018,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1423279039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423279040}
+  - component: {fileID: 1423279041}
+  m_Layer: 0
+  m_Name: PowerUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423279040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423279039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.678297, y: 22.698566, z: -21.416943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423279041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423279039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9aa11f67aa6eb0438d54aaa9731d4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUps:
+  - {fileID: 628827891378026763, guid: 9e1cadf01e3825043a6ac7cf8fa5db3c, type: 3}
+  - {fileID: 628827891378026763, guid: f338aa0e5d4fe1e46a8e7ebddbcc32fc, type: 3}
+  powerUpSpeed: 15
+  spawnYRange: {x: 1, y: 4}
+  spawnX: 25
+  speedIncrease: 15
+  speedDuration: 5
+  invincibilityDuration: 5
 --- !u!114 &1498826492 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2282506564232292400, guid: daa208fff61e65542b0784a0709d0dfb, type: 3}
@@ -1365,6 +1415,7 @@ SceneRoots:
   - {fileID: 534669905}
   - {fileID: 113504803}
   - {fileID: 510036430}
+  - {fileID: 1423279040}
   - {fileID: 1022489019}
   - {fileID: 1787924603}
   - {fileID: 1337266245}
