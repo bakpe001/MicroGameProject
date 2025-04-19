@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 100084, guid: c72c97e952bf7834b85e6164373d310d, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 100170, guid: c72c97e952bf7834b85e6164373d310d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -714,8 +718,12 @@ MonoBehaviour:
   jumpForce: 18
   gravityModifier: {x: 0, y: -40, z: 0}
   isOnGround: 1
+  isDead: 0
+  isInvincible: 0
   selectedJumpSound: 0
   selectedCrashSound: 0
+  invincibleLaunchForce: 3.5
+  gameManager: {fileID: 0}
   explosionParticle: {fileID: 6632318050679030996}
   dirtParticle: {fileID: 1828150641440799826}
   jumpSound:

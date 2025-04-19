@@ -16,7 +16,11 @@ public class ObstacleMovment : MonoBehaviour
     {
         transform.Translate(Vector3.left * Time.deltaTime * gameManager.speed);
 
-        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        if (transform.position.x < leftBound)
+        {
+            Destroy(gameObject);
+        }
+        if (transform.position.z < -10  )
         {
             Destroy(gameObject);
         }

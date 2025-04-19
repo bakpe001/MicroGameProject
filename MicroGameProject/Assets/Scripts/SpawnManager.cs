@@ -1,10 +1,11 @@
-using System.Collections;
+ using System.Collections;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [Header("Obstacle Settings")]
+    [Header("Spawn Indexes")]
     public GameObject[] obstacles; // Assign all obstacle prefabs here
+    public GameObject[] powerUps; // Assign all powerup prefabs here
 
     [Header("Game Manager Reference")]
     public GameManager gameManager; // Set this via inspector or dynamically
@@ -27,6 +28,16 @@ public class SpawnManager : MonoBehaviour
     {
         // Begin the burst-spawning loop after initial delay
         StartCoroutine(SpawnObstacleBursts());
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            // Spawn a power-up when 'P' is pressed
+            SpawnPowerUp();
+        }
     }
 
     IEnumerator SpawnObstacleBursts()
@@ -74,5 +85,21 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = new Vector3(spawnX, y, 0);
 
         Instantiate(obstacles[index], spawnPos, obstacles[index].transform.rotation);
+    }
+
+    void SpawnPowerUp()
+    {
+        int index = Random.Range(0, powerUps.Length);
+        float y = Random.Range(spawnYRange.x, spawnYRange.y);
+        Vector3 spawnPos = new Vector3(spawnX, y, 0);
+
+        Instantiate(powerUps[index], spawnPos, powerUps[index].transform.rotation);
+    }
+    void SpawnPowerUp(int choise)
+    {
+        float y = Random.Range(spawnYRange.x, spawnYRange.y);
+        Vector3 spawnPos = new Vector3(spawnX, y, 0);
+
+        Instantiate(powerUps[choise], spawnPos, powerUps[choise].transform.rotation);
     }
 }

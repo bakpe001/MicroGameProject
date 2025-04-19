@@ -1,19 +1,24 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Collections;
 using static Unity.VisualScripting.Metadata;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Speed of diffrent game objects")]
     public float speed = 15f; //Speed of the obsticles and backgound
     public float Platformspeed = 15f; //Speed of the obsticles and backgound
+    public float powerUpSpeed = 15f; //Speed of the obsticles
     public bool gameOver = false;
 
+    [Header("Textures and Models")]
     //Refrences to every model, texture and backgound avaiable in the game
     public Background backgound; //Static Refrence to the backgound element
     public PlayerModel playerModel; //Static Refrence to the playerModel element
     public SkinOptions[] skinOptions; //Static Refrence array to the all the skin options for each playermodel element
     private int currentSkin = 0; //Current Texture selected
-
+    
+    [Header("Spawning Settings")]
     //Modifiers of spawnning obsticles
     public float startDelay= 2f; //Delay before the game starts spawning obsticles
     public float repeatDelay = 2f; //Delay between the game spawning obsticles
@@ -22,6 +27,7 @@ public class GameManager : MonoBehaviour
     public PlatformSpawnManager platformSpawnManager; // Reference to platform spawner
     //public TimeScore;
 
+    public PlayerManager playerManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
