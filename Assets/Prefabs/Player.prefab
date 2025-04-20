@@ -719,9 +719,10 @@ MonoBehaviour:
   gravityModifier: {x: 0, y: -40, z: 0}
   isOnGround: 1
   isDead: 0
-  DoubleJump: 0
+  isInvincible: 0
   selectedJumpSound: 0
   selectedCrashSound: 0
+  invincibleLaunchForce: 3.5
   gameManager: {fileID: 0}
   explosionParticle: {fileID: 6632318050679030996}
   dirtParticle: {fileID: 1828150641440799826}

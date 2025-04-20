@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class PlayerManager : MonoBehaviour
     [Header("Player state")]
     public bool isDead = false; //Is the player dead?
     public bool isInvincible = false; //Is the player invincible?
-    private bool isInvisible = false; // Is the player invisible?
 
     [Header("Sound Effect Selection")]
     public int selectedJumpSound = 0; //Jump sound selection from an array
@@ -31,9 +29,6 @@ public class PlayerManager : MonoBehaviour
     public AudioClip[] crashSound;
     private AudioSource playerAudio;
 
-    private Renderer[] renderers;
-    public ScoreManager scoreManager;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,7 +36,6 @@ public class PlayerManager : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
-        renderers = GetComponentsInChildren<Renderer>();
     }
 
     // Update is called once per frame
@@ -55,21 +49,15 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // If player collides with ground, set isOnGround to true
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
             dirtParticle.Play();
         }
-        // If player collides with an obstacle and is NOT invincible
         if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
         {
-            if (collision.gameObject.CompareTag("Obstacle") && !isInvincible)
-            {
-                gameManager.PlayerHitObstacle();
-            }
+            Death();
         }
-        // If player collides with an obstacle while invincible, apply launch force
         if (collision.gameObject.CompareTag("Obstacle") && isInvincible)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
@@ -88,7 +76,7 @@ public class PlayerManager : MonoBehaviour
         dirtParticle.Stop();
         playerAudio.PlayOneShot(jumpSound[selectedJumpSound], 1.0f);
     }
-    public void Death()
+    private void Death()
     {
         isDead = true;
         gameManager.gameOver = true;
@@ -98,54 +86,6 @@ public class PlayerManager : MonoBehaviour
         explosionParticle.Play();
         dirtParticle.Stop();
         playerAudio.PlayOneShot(crashSound[selectedCrashSound], 1.0f);
-
-        // Handle invincibility when death occurs
-        StartCoroutine(HandleInvincibility());
-    }
-    // Coroutine to handle invincibility and invisibility effect
-    private IEnumerator HandleInvincibility()
-    {
-        isInvincible = true;
-
-        bool skipInvisibility = gameManager.scoreManager.GetLives() <= 1;
-
-        if (!skipInvisibility)
-        {
-            isInvisible = true;
-            SetPlayerVisible(false);
-            yield return new WaitForSeconds(2f);
-            SetPlayerVisible(true);
-            isInvisible = false;
-        }
-        else
-        {
-            // Ei näkymättömyyttä jos viimeinen elämä
-            yield return new WaitForSeconds(2f);
-        }
-
-        isInvincible = false;
-    }
-    private IEnumerator BlinkEffect()
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            SetPlayerVisible(false);
-            yield return new WaitForSeconds(0.1f);
-            SetPlayerVisible(true);
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-    public void MakePlayerInvincible()
-    {
-        StartCoroutine(HandleInvincibility());
-        StartCoroutine(BlinkEffect());
-    }
-    private void SetPlayerVisible(bool visible)
-    {
-        foreach (Renderer rend in renderers)
-        {
-            rend.enabled = visible;
-        }
     }
 
 }
