@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour
 {
+    #region References
+    [Header("Player Main Data")]
     public float jumpForce = 18f; // The strength of the jump
     public Vector3 gravityModifier = new Vector3(0, -40.0F, 0); // Custom Gravity
     public bool isOnGround = true; // Checking grounded state for jumps
@@ -9,9 +12,11 @@ public class PlayerManager : MonoBehaviour
     public bool DoubleJump = false; // DoubleJump True?
     private bool canDoubleJump = false; //Track whether we can do the double jump (after first jump)
 
+    [Header("Selected SFX Integers")]
     public int selectedJumpSound = 0; // Jump sound selection from an array
     public int selectedCrashSound = 0; // Crash sound selection from an array
 
+    [Header("References")]
     public GameManager gameManager;
     private Rigidbody playerRb;
     private Animator playerAnim;
@@ -21,8 +26,10 @@ public class PlayerManager : MonoBehaviour
     public AudioClip[] crashSound;
     private AudioSource playerAudio;
 
-    
-    
+    // Public function to subscribe listeners to. Really fucking handy. -Davoth
+    [Header("Player Dead Event")]
+    public UnityEvent playerDeath;
+    #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,8 +64,11 @@ public class PlayerManager : MonoBehaviour
     }
 
     // Detect ground and obstacle collisions
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) => ObstacleCheck(collision);
+
+    private void ObstacleCheck(Collision collision)
     {
+        // Wasn't deadly, so reset the jump.
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
@@ -66,6 +76,7 @@ public class PlayerManager : MonoBehaviour
             dirtParticle.Play();
         }
 
+        // Holy shit a barrel, lethal as fuck. Gameover.
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             isDead = true;
@@ -76,6 +87,9 @@ public class PlayerManager : MonoBehaviour
             explosionParticle.Play();
             dirtParticle.Stop();
             playerAudio.PlayOneShot(crashSound[selectedCrashSound], 1.0f);
+
+            // Player died, invoke the public event and run all subscribed code. -Davoth
+            playerDeath?.Invoke();
         }
     }
 
@@ -87,5 +101,23 @@ public class PlayerManager : MonoBehaviour
         playerAnim.SetTrigger("Jump_trig");
         dirtParticle.Stop();
         playerAudio.PlayOneShot(jumpSound[selectedJumpSound], 1.0f); // Play jump sound
+    }
+
+    // This is useful for resetting the player after a gameover screen or equivalent. -Davoth
+    public void ResetPlayer()
+    {
+        jumpForce = 18f; // The strength of the jump
+        isOnGround = true; // Checking grounded state for jumps
+        isDead = false; // Is the player dead?
+        DoubleJump = false; // DoubleJump True?
+        canDoubleJump = false; //Track whether we can do the double jump (after first jump)
+
+        selectedJumpSound = 0; // Jump sound selection from an array
+        selectedCrashSound = 0; // Crash sound selection from an array
+
+        // Reset animation and particle FX. -Davoth
+        playerAnim.SetBool("Death_b", false);
+        explosionParticle.Stop();
+        dirtParticle.Play();
     }
 }
