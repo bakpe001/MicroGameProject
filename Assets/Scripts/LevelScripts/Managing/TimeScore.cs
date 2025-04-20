@@ -12,15 +12,15 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameManager.gameOver)
-        {
-            score += Time.deltaTime;
-            UpdateScoreText();
-        }
+        UpdateScoreText();
     }
 
     void UpdateScoreText()
     {
+        if (!gameManager.countScore) return;
+
+        score += Time.deltaTime;
+
         if (scoreText != null)
         {
             scoreText.text = "Score: " + Mathf.FloorToInt(score).ToString();
