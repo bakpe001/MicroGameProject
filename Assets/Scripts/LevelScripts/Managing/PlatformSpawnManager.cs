@@ -25,6 +25,9 @@ public class PlatformSpawnManager : MonoBehaviour
 
     void Start()
     {
+    }
+    public void StartSpawning()
+    {
         StartCoroutine(SpawnPlatformBursts());
     }
 

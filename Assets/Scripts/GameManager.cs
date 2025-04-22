@@ -79,7 +79,14 @@ public class GameManager : MonoBehaviour
 
         playerManager.ResetPlayer();
 
-        ScoreManager.ResetScore();
+        spawnManager.StartSpawning();
+        platformSpawnManager.StartSpawning();
+
+        FindObjectOfType<ScoreManager>().ResetStats();
+
+        MenuUI.SetActive(false); // Piilota p‰‰valikko
+        GameUI.SetActive(true); // N‰yt‰ pelin UI
+
     }
 
     public void OnPlayerDeath()

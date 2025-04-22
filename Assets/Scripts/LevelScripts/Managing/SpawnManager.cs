@@ -101,4 +101,8 @@ public class SpawnManager : MonoBehaviour
             Debug.Log($"[Difficulty Up] maxBurstCount: {maxBurstCount}, maxBurstDelay: {maxBurstDelay}");
         }
     }
+    public void StartSpawning()
+    {
+        StartCoroutine(SpawnObstacleBursts());
+    }
 }
