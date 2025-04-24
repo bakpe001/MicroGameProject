@@ -6,7 +6,7 @@ public class PowerUp1 : MonoBehaviour
 
     [Tooltip("Amount of points to add when picked up")]
     public int scoreAmount = 10;
-
+    
     private ScoreManager scoreManager;
 
     void Start()
@@ -19,8 +19,13 @@ public class PowerUp1 : MonoBehaviour
     {
         if (other.CompareTag("Player") && scoreManager != null)
         {
+            Debug.Log("PowerUp1 kerätty!");
             scoreManager.AddScore(scoreAmount);
             Destroy(gameObject);
+        }
+        else
+        {
+            Debug.LogWarning("ScoreManager on NULL tai törmäys ei ollut Player!");
         }
     }
 }
